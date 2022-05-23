@@ -88,7 +88,49 @@ pour chaque facteur premier p de n :
 ## Propriétés pour les calculs dans &Zopf;<sub>m</sub>
 - Dans un calcul fait de nombres additionnés et / ou multipliés, on peut remplacer n'importe quel nombre a par a +km où k est n'importe quel entier relatif.
   - Par contre cette règle ne fonctionne pas avec les exposants (puisque l'exposant n'est pas un élément du groupe).
+  - Il peut être utile de se rendre compte qu'un nombre est égal à un petit nombre négatif, comme -1 ou -2.
 - Diviser par a est équivalent à  multiplier par l'inverse de a
 - Seulement si a est premier avec m :
   - a<sup>i</sup> = a<sup>i + k o</sup> pour n'importe quel entier relatif k, où o est l'ordre de a dans &Zopf;<sub>m</sub><sup>* </sup>
   - a<sup>i</sup> = a<sup>i + k &phi;(m)</sup> pour n'importe quel entier relatif k
+
+## Isomorphisme d'anneau entre &Zopf;<sub>mn</sub> et &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub>
+Uniquement si m et n sont premiers entre eux.
+- Passage de &Zopf;<sub>mn</sub> à &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub> (CRT<sup>-1</sup>) : x -> (x mod m, x mod n)
+- Passage de &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub> à &Zopf;<sub>mn</sub> (CRT) : (a, b) -> a n<sup>-1</sup>n + b m<sup>-1</sup>m
+  - Où n<sup>-1</sup> est l'inverse de n modulo m, et idem dans l'autre sens pour m<sup>-1</sup> 
+
+## Racines carrées
+### Dans &Zopf;<sub>p</sub> avec p premier et > 2
+- 0 a une seule racine carrée : 0
+- 1 a deux racines carrées : 1 et -1
+- Les autres éléments ont soit aucune soit deux racines carrées, qui sont leurs opposés additifs.
+### Dans &Zopf;<sub>pq</sub> avec p et q premiers, différents et > 2
+- 0 a une seule racine carrée : 0
+- Les autres éléments ont soit 0 soit 4 racines carrées
+  - Les 4 racines sont deux paires d'éléments opposés additivement.
+  - Si (a, b) est le tuple correspondant dans &Zopf;<sub>p</sub> x &Zopf;<sub>q</sub>, alors a et b ont chacun soit 0 soit deux racines dans &Zopf;<sub>p</sub> et &Zopf;<sub>q</sub> respectivement. 
+
+## Tests pour déterminer si un nombre est premier
+On veut tester si n est premier
+### Test de Fermat
+- Si a<sup>n-1</sup> mod n &ne; 1, alors n n'est pas premier.
+  - a est choisi aléatoirement dans &Zopf;<sub>n</sub> - 0
+- Les nombres de Carmichael ne sont pas premiers mais passent presque toujours ce test.
+### Test de Miller-Rabin
+#### Idée
+Dans &Zopf;<sub>n</sub>, pour n'importe quel élément a :
+- Si a<sup>n-1</sup> &ne; 1, n n'est pas premier (test de Fermat)
+- Si 1 possède une racine non triviale (différente de  1 et -1), n n'est pas premier
+
+Soit d le nombre impair tel que n - 1 = 2<sup>s</sup> d. On part de x := a<sup>d</sup> et on s'intéresse à la chaîne des nombres obtenus en élevant x au carré plusieurs fois jusqu'à arriver à a<sup>n-1</sup>. Si n est premier :
+- Soit le premier élément de la chaîne est 1 et tous les suivants aussi
+- Soit, après un nombre indéterminé d'étapes, la chaîne atteint -1 et tous les éléments suivants sont 1
+#### Algo
+Tout se passe modulo n.
+- On part de x := a<sup>d</sup>
+- Si x &ne; 1, on itère en mettant x au carré jusqu'à atteindre -1 :
+  - Si à la s - 1 ième étape on n'a pas atteint -1, n n'est pas premier
+    - Test de Fermat
+  - Si on atteint 1, n n'est pas premier
+    - Puisqu'on n'est pas passé par -1 et donc on a trouvé une racine non triviale de 1
