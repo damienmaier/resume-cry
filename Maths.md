@@ -1,4 +1,4 @@
-# resume-cry
+# Maths crypto
 ## Définitions groupe, anneau, corps
 ### Groupe
 Ensemble muni d'une opération (associative) où
