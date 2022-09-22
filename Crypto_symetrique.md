@@ -112,7 +112,7 @@ Counter mode (CTR)
 - Une double ronde contient 8 "quarter-rounds", une pour chaque colonne et pour chaque diagonale
 - Les 10 doubles rondes sont inversibles. Sans l'addition mot par mot finale, on pourrait retrouver l'état initial à partir de la sortie de 512 bits 
 ### Taille de clés pour le chiffrement par bloc et par flot
-- Au moins 128 bits.
+- 128 - 256 bits.
 - 80 bits est insuffisant.
 - Pour une clé de taille l, l'attaquant doit essayer 2<sup>l - 1</sup> clés en moyenne, 2<sup>l</sup> clés au pire.
 

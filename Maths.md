@@ -94,10 +94,12 @@ pour chaque facteur premier p de n :
   - a<sup>i</sup> = a<sup>i + k o</sup> pour n'importe quel entier relatif k, où o est l'ordre de a dans &Zopf;<sub>m</sub><sup>* </sup>
   - a<sup>i</sup> = a<sup>i + k &phi;(m)</sup> pour n'importe quel entier relatif k
 
-## Isomorphisme d'anneau entre &Zopf;<sub>mn</sub> et &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub>
+## Théorème des restes chinois
+![This is an image](images/crt.png)
+### Isomorphisme d'anneau entre &Zopf;<sub>mn</sub> et &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub>
 Uniquement si m et n sont premiers entre eux.
 - Passage de &Zopf;<sub>mn</sub> à &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub> (CRT<sup>-1</sup>) : x -> (x mod m, x mod n)
-- Passage de &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub> à &Zopf;<sub>mn</sub> (CRT) : (a, b) -> a n<sup>-1</sup>n + b m<sup>-1</sup>m
+- Passage de &Zopf;<sub>m</sub> x &Zopf;<sub>n</sub> à &Zopf;<sub>mn</sub> (CRT) : (a, b) -> a n<sup>-1</sup>n + b m<sup>-1</sup>m mod mn
   - Où n<sup>-1</sup> est l'inverse de n modulo m, et idem dans l'autre sens pour m<sup>-1</sup> 
 
 ## Racines carrées
@@ -105,7 +107,7 @@ Uniquement si m et n sont premiers entre eux.
 - 0 a une seule racine carrée : 0
 - 1 a deux racines carrées : 1 et -1
 - Les autres éléments ont soit aucune soit deux racines carrées, qui sont leurs opposés additifs.
-### Dans &Zopf;<sub>pq</sub> avec p et q premiers, différents et > 2
+### Dans &Zopf;*<sub>pq</sub> avec p et q premiers, différents et > 2
 - 0 a une seule racine carrée : 0
 - Les autres éléments ont soit 0 soit 4 racines carrées
   - Les 4 racines sont deux paires d'éléments opposés additivement.
@@ -121,7 +123,7 @@ On veut tester si n est premier
 #### Idée
 Dans &Zopf;<sub>n</sub>, pour n'importe quel élément a :
 - Si a<sup>n-1</sup> &ne; 1, n n'est pas premier (test de Fermat)
-- Si 1 possède une racine non triviale (différente de  1 et -1), n n'est pas premier
+- Si 1 possède une racine non triviale (différente de 1 et -1), n n'est pas premier
 
 Soit d le nombre impair tel que n - 1 = 2<sup>s</sup> d. On part de x := a<sup>d</sup> et on s'intéresse à la chaîne des nombres obtenus en élevant x au carré plusieurs fois jusqu'à arriver à a<sup>n-1</sup>. Si n est premier :
 - Soit le premier élément de la chaîne est 1 et tous les suivants aussi
@@ -134,3 +136,16 @@ Tout se passe modulo n.
     - Test de Fermat
   - Si on atteint 1, n n'est pas premier
     - Puisqu'on n'est pas passé par -1 et donc on a trouvé une racine non triviale de 1
+#### Efficacité
+La probabilité d'indiquer un nombre premier de manière erronée est < 4<sup>-nb_itérations</sup>
+## Courbes elliptiques
+- Ensemble des points (x, y) vérifiant y<sup>2</sup> = x<sup>3</sup> + ax + b
+- Et en plus 0, le point à l'infini
+### Addition de points
+P + Q :
+
+![This is an image](images/add1_ec.png)
+
+2P :
+
+![This is an image](images/add2_ec.png)
