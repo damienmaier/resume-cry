@@ -1,6 +1,6 @@
 # Généralités chiffrement
 ## Permutations
-- Un algorithme de chiffrement est une famille de permutations
+- Un algorithme de chiffrement déterministe est une famille de permutations
     - Permutation <=> on peut inverser l'algorithme
     - La clé détermine une permutation précise
     - Sur {0, 1}<sup>n</sup> il existe 2<sup>n</sup>! permutations
