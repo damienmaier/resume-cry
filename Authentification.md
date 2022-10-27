@@ -1,4 +1,4 @@
-# Authentification
+é# Authentification
 - Identification = annoncer qui on est
 - Authentification = prouver qu'on est qui on prétend
 ## Authentification faible
