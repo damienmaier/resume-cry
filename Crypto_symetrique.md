@@ -380,22 +380,6 @@ Shambles attack
     - Éventuellement partie 4 identique, choisie par l'attaquant
   - Permet par exemple de faire signer un message innocent, et d'obtenir une signature valable pour un message malicieux.
 
-### MD5
-- Cassé, il est possible de trouver rapidement des collisions
-- Merkle-Damgard
-- Empreintes de 128 bits
-### SHA-1
-- Cassé, il est possible de trouver rapidement des collisions
-- Merkle-Damgard
-- Empreintes de 160 bits
-### SHA-256, SHA-512 (SHA-2)
-- Sûr
-- Merkle-Damgard + Davies-Meyer
-- Empreintes de 224, 256, 384, 512 bits
-### SHA-3
-- Sûr
-- Construction éponge
-- Empreintes de 224, 256, 384, 512 bits
 # Padding
 - Permet de faire en sorte que la taille du message soit un multiple de la taille de bloc
 - Utilisé par les fonctions de hachage et certains modes opératoires
