@@ -156,3 +156,5 @@ Probabilité d'avoir une collision si on fait
 - dans un espace de taille d
 
 ![](images/birthday.png)
+
+Trouver une collision avec une bonne probabilité nécessite 2<sup>l/2</sup> tirage, avec l le nombre de bits d'un nombre

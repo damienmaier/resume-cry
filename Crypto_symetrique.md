@@ -163,6 +163,9 @@ On chiffre le message avec CBC et un IV de 0. Le MAC est la valeur du dernier bl
         - Birthday problem sur la taille de bloc
       - CTF
         - Birthday problem sur la taille de nonce
+- Birthday problem pour garder une probabilité de collision en-dessous de 2<sup>-32</sup>
+  - 64 bits : max 2<sup>16</sup> tirages aléatoires
+  - 128 bits : max 2<sup>48</sup> tirages aléatoires
 ## Electronic code book (ECB)
 
 ![This is an image](images/ecb.png)
