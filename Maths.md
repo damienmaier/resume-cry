@@ -149,3 +149,10 @@ P + Q :
 2P :
 
 ![This is an image](images/add2_ec.png)
+
+# Problème des anniversaires
+Probabilité d'avoir une collision si on fait
+- n tirages
+- dans un espace de taille d
+
+![](images/birthday.png)

@@ -9,8 +9,9 @@ Un chiffrement est appelé parfaitement sûr si le texte clair X et le texte chi
 - <=> Pr[X|Y] = Pr[X]
 - La connaissance du texte chiffré n'apporte aucune connaissance sur le texte clair
 ## Nonce et chiffrement déterministe
-- Le fait que le chiffrement soit déterministe entraîne une fuite d'information
-    - Vu qu'on peut savoir quand deux messages identiques sont envoyés
+- Si le chiffrement est déterministe 
+  - L'attaquant sait si deux messages identiques sont envoyés
+  - Si l'attaquant a accès à un oracle de chiffrement, il peut faire un bruteforce sur le message clair
 - Une manière de résoudre ce problème est que l'algorithme utilise un nonce ou un IV, différent pour chaque message
 ## Modèles de sécurité
 ### Attaques
