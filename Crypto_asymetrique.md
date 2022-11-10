@@ -1,47 +1,85 @@
-# Crypto asymétrique
-
+Crypto asymétrique
+===
 
 # Algorithmes
 ## Diffie-Hellman
-### Générer les paramètres publics
+### Principe général
+#### Paramètres publics
+- Groupe G où le logarithme discret est difficile
+- g &#8712; G, d'ordre premier q
+  - Le fait que q soit premier empêche certaines attaques
+#### Algorithme
+- Alice
+  - Choisit un exposant a &in; &Zopf;<sub>q</sub>*
+  - Envoie y<sub>a</sub> = g<sup>a</sup>
+  - Secret partagé k = KDF(y<sub>b</sub><sup>a</sup>)
+- Bob
+  - Choisit un exposant b &#8712; &Zopf;<sub>q</sub>*
+  - Envoie y<sub>b</sub> = g<sup>b</sup>
+  - Secret partagé k = KDF(y<sub>a</sub><sup>b</sup>)
+### G = groupe multiplicatif &Zopf;<sub>p</sub>* avec p premier
 - Choisir deux nombres premiers p et q qui respectent p = cq + 1
   - Cette relation permet l'existence d'un élément d'ordre q, puisque comme ça l'ordre du groupe p-1 est un multiple de q
-  - Le fait que q soit premier empêche certaines attaques
 - Trouver g, un élément d'ordre q du groupe multiplicatif &Zopf;<sub>p</sub>* 
-#### EC
-- Courbe elliptique avec N points
-- point G d'ordre n premier
-### Protocole
-![This is an image](images/diffie-hellman.png)
-- KDF : key derivation function
-#### EC
-- a et b sont dans 1, ..., n-1
-- Y<sub>a</sub> = aG, Y<sub>b</sub> = bG
-- K = abG
+### Courbe elliptique
+- Point G d'ordre n premier
 
 ## El Gamal
 Chiffrement non déterministe
-### Clés
-- Clé privée : a appartient à &Zopf;<sub>q</sub>
-- Clé publique : A = g<sup>a</sup> mod p
-#### EC
-- Clé privée : a appartient à 1, ... , n-1
-- Clé publique : A = aG
-### Chiffrement
-- Tirer k appartient à &Zopf;<sub>q</sub> uniformément au hasard
-- (u, v) = (g<sup>k</sup> mod p, MA<sup>k</sup> mod p)
-#### EC
-- Tirer k appartient à 1, ..., n-1
-- (u, v) = (kG, M + [kA]<sub>x</sub>)
-### Déchiffrement
-m = v/u<sup>a</sup> mod p
-#### EC
-m = v - [au]<sub>x</sub>
+### Principe général
+#### Paramètres publics
+Comme pour Diffie-Hellman
+#### Clés
+- Clé privée
+  - a &in; &Zopf;<sub>q</sub>
+- Clé publique
+  - A = g<sup>a</sup>
+#### Chiffrement
+- Tirer k &in; &Zopf;<sub>q</sub> uniformément au hasard
+- (u, v) = (g<sup>k</sup>, M chiffré avec A<sup>k</sup>)
+#### Déchiffrement
+M = v déchiffré avec u<sup>a</sup>
+
 ## Signatures DSA
+### Principe général
+#### Paramètres publics
+- Groupe G où le logarithme discret est difficile
+- g &in; G, d'ordre premier q
+#### Clés
+- Clé privée
+  - a &in; &Zopf;<sub>q</sub>
+- Clé publique
+  - A = g<sup>a</sup>
+#### Idée intuitive de la signature
+- Choisir un exposant *k &in; &Zopf;<sub>q</sub>*
+  - Choisi uniformément au hasard
+  - Secret
+- Fixer *r* déterminé par *g<sup>k</sup> &in; G*
+  - *r* premier élément de la signature
+- Soit l'exposant *b &in; &Zopf;<sub>q</sub>* déterminé par *M*, *a* et *r*
+- Calculer *s &in; &Zopf;<sub>q</sub>* t. q. *g<sup>bs</sup> = g<sup>k</sup>*
+  - *s* deuxième élément de la signature
+  - *s* est l'exposant qui permet de "se déplacer" de *g<sup>b</sup>* à *g<sup>k</sup>*
+  - Le fait que le point de départ dépende de *r* permet de prouver qu'on n'a pas choisi *g<sup>k</sup>* a posteriori
+  - En calculant *s*, on donne la preuve qu'on connaît *a*
+#### Idée intuitive de la vérification
+- Calculer *g<sup>b</sup>* en utilisant *g<sup>a</sup>*, *M* et *r* qui sont connus
+- Calculer *g<sup>bs</sup>*
+  - Si la signature est valide, ça doit être égal à *g<sup>k</sup>* qui doit donner *r*
+#### Modulo
+- Tous les calculs d'exposants ont lieu modulo q
+- C'est ok puisque q est l'ordre de g
+### DSA
+*s* est inversé
+
 ![This is an image](images/dsa.png)
 
+D'abord vérifier que r et s sont dans &Zopf;<sub>q</sub>
+
 ![This is an image](images/dsa_verification.png)
-### EC
+### ECDSA
+*s* est inversé
+
 ![This is an image](images/ecdsa.png)
 
 ![This is an image](images/ecdsa_verification.png)
