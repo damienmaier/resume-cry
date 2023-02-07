@@ -29,5 +29,5 @@ def min_set_size_for_draw_count(draw_count_log2: int) -> int:
     return next(set_size_log2 for set_size_log2 in range(1024) if has_low_enough_collision_probability(set_size_log2))
 
 
-print(max_draws_for_set_size(44))
+print(collision_probability(10, 64000))
 
