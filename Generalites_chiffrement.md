@@ -28,7 +28,15 @@ Les attaques où l'adversaire a accès à un oracle sont soit :
 La taille de la clé dépend de pendant combien de temps on veut protéger les données
 - Clé symétrique : il faut prendre en compte la complexité du bruteforce et la loi de Moore.
 - Clé asymétrique : en plus de la loi de Moore, il faut prendre en compte les meilleurs algorithmes connus pour casser le problème difficile sous-jacent
-## Chiffrement hybride
-- Dans la pratique, comme le chiffrement asymétrique est beaucoup trop peu efficace, on l'utilise uniquement pour échanger des clés symétriques 
 
-![This is an image](images/chiffrement_hybride.png)
+## Modèles de sécurité pour crypto asymétrique
+### IND-CPA
+- L'adversaire a la clé publique => oracle de chiffrement
+- Si système de chiffrement est déterministe, il n'est pas IND-CPA
+### IND-CCA
+- L'adversaire a accès à un oracle de déchiffrement
+  - Peut demander n'importe quoi sauf y
+- IND-CCA : non adaptative
+  - Accès à l'oracle seulement avant de recevoir y
+- IND-CCA2 : adaptative
+  - Accès à l'oracle avant et après

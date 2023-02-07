@@ -95,14 +95,24 @@ D'abord vérifier que r et s sont dans &Zopf;<sub>q</sub>
 ### Chiffrement / déchiffrement textbook RSA
 - c = m<sup>e</sup> mod n
 - m = c<sup>d</sup> mod n
-### Formatage de message
-RSA-OAEP
-
+### RSA PKCS v1.5
+- Inclut (facultatif) de l'aléatoire
+- N'est pas IND-CPA
+- Ne pas utiliser
+### RSA-OAEP
 ![This is an image](images/rsa-oaep.png)
+
+IND-CCA secure contre les adversaires black box
 ### Problèmes/attaques
 - Sur textbook RSA (donc sans formatage)
   - Comme la clé publique est connue et que RSA est déterministe, l'attaquant peut toujours faire une attaque à texte clair choisi
   - Si il y a un nombre trop faible de messages possibles, on peut retrouver le message par bruteforce
+  - e trop petit
+    - m<sup>e</sup> < n, donc pas de modulo et c'est facile de calculer la racine nième de c.
+    - Même si m est assez grand pour que le modulo ait lieu, si e est petit et réutilisé plusieurs fois pour le même message avec des n différents, on peut utiliser le CRT pour retrouver m
+    - Si e est petit, on peut faire une attaque de Coppersmith
+  - d trop petit
+    - Wiener key recovery attack : si d < racine quatrième de n.
 - Si un attaquant connaît phi(n)
   - Il peut retrouver d en calculant l'inverse de e mod phi(n)
   - Il peut retrouver p et q en résolvant n = pq, phi(n) = (p - 1)(q - 1)
